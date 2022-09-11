@@ -1,0 +1,9 @@
+IAM Roles
+> Select Lambda
+AWSLambdaExecute
+AmazonEC2ReadOnlyAccess
+AmazonSSMFullAccess
+ 
+IAM Roles
+> Select EC2
+AmazonSSMManagedInstanceCore
