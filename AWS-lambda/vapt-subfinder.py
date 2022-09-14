@@ -29,7 +29,6 @@ def lambda_handler(event, context):
             InstanceIds=[instanceid],
             DocumentName="AWS-RunShellScript",
             Parameters={
-#                "commands": ["sudo docker run vapt-subfinder subfinder -d vulnweb.com -silent"]
                 "commands": ["sudo docker run vapt-subfinder subfinder -d cdac.in -silent | aws s3 cp - s3://vapt-s3/subs.txt ; aws s3 cp s3://vapt-s3/subs.txt /home/ubuntu/project/subs.txt | cat /home/ubuntu/project/subs.txt"]
             },
         )
@@ -43,10 +42,6 @@ def lambda_handler(event, context):
         output = ssm.get_command_invocation(CommandId=command_id, InstanceId=instanceid)
         print(output)
         substring = output["StandardOutputContent"]
-        subdomains = substring.split("\\n")
-        file = ""
-        for subdomain in subdomains:
-            file = file + subdomain.strip("\"") + "\n"
 
     filename = 'testsubs' + '.txt'
     uploadByteStream = bytes(json.dumps(file).encode('UTF-8'))
