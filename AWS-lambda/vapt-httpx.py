@@ -40,7 +40,7 @@ def lambda_handler(event, context):
 
         # fetching command output
         output = ssm.get_command_invocation(CommandId=command_id, InstanceId=instanceid)
-        print(output["StandardOutputContent"])
+        print(output)
         
     filename = 'testweb' + '.txt'
     uploadByteStream = bytes(json.dumps(output['StandardOutputContent']).encode('UTF-8'))
