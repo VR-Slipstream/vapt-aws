@@ -41,7 +41,6 @@ def lambda_handler(event, context):
         # fetching command output
         output = ssm.get_command_invocation(CommandId=command_id, InstanceId=instanceid)
         print(output)
-        substring = output["StandardOutputContent"]
 
     filename = 'testsubs' + '.txt'
     uploadByteStream = bytes(json.dumps(file).encode('UTF-8'))
