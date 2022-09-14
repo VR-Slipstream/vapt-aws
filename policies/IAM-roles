@@ -7,3 +7,6 @@ AmazonSSMFullAccess
 IAM Roles
 > Select EC2
 AmazonSSMManagedInstanceCore
+
+IAM Roles
+> Select Step Function
