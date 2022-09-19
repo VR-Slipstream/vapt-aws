@@ -29,14 +29,14 @@ def lambda_handler(event, context):
             InstanceIds=[instanceid],
             DocumentName="AWS-RunShellScript",
             Parameters={
-                "commands": ["cd /home/ubuntu/project ; cat web.txt | nuclei -t /home/ubuntu/nuclei-templates/cves/ -silent | aws s3 cp - s3://vapt-s3/vulns.txt ; aws s3 cp s3://vapt-s3/vulns.txt /home/ubuntu/project/vulns.txt ; cat /home/ubuntu/project/vulns.txt "]
+                "commands": ["cd /home/ubuntu/project ; cat web.txt | timeout 600 nuclei -silent | aws s3 cp - s3://vapt-s3/vulns.txt ; aws s3 cp s3://vapt-s3/vulns.txt /home/ubuntu/project/vulns.txt ; cat /home/ubuntu/project/vulns.txt "]
             },
         )
 
         # fetching command id for the output
         command_id = response["Command"]["CommandId"]
 
-        time.sleep(700)
+        time.sleep(600)
 
         # fetching command output
         output = ssm.get_command_invocation(CommandId=command_id, InstanceId=instanceid)
