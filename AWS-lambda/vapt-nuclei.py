@@ -36,7 +36,7 @@ def lambda_handler(event, context):
         # fetching command id for the output
         command_id = response["Command"]["CommandId"]
 
-        time.sleep(600)
+        time.sleep(603)
 
         # fetching command output
         output = ssm.get_command_invocation(CommandId=command_id, InstanceId=instanceid)
