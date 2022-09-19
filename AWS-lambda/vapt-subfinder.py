@@ -29,7 +29,7 @@ def lambda_handler(event, context):
             InstanceIds=[instanceid],
             DocumentName="AWS-RunShellScript",
             Parameters={
-                "commands": ["sudo docker run vapt-subfinder subfinder -d cdac.in -silent | aws s3 cp - s3://vapt-s3/subs.txt ; aws s3 cp s3://vapt-s3/subs.txt /home/ubuntu/project/subs.txt ; cat /home/ubuntu/project/subs.txt"]
+                "commands": ["sudo docker run vapt-subfinder subfinder -d " + event["domain"] + " -silent | aws s3 cp - s3://vapt-s3/subs.txt ; aws s3 cp s3://vapt-s3/subs.txt /home/ubuntu/project/subs.txt ; cat /home/ubuntu/project/subs.txt"]
             },
         )
 
@@ -46,4 +46,4 @@ def lambda_handler(event, context):
     uploadByteStream = bytes(json.dumps(output["StandardOutputContent"]).encode('UTF-8'))
     s3.put_object(Bucket=bucket, Key=filename, Body=uploadByteStream)
 
-    return {"statusCode": 200, "subs": json.dumps(output["StandardOutputContent"])}
+    return {"statusCode": 200, "subs": json.dumps(output["StandardOutputContent"]), "scantype": event["scantype"], "networkscan": event["networkscan"]}
