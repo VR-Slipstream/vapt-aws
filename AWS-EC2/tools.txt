@@ -1,4 +1,5 @@
 docker
+golang-go
 subfinder (Docker Image)
 httpx/httprobe (Both Docker and cmd)
 nuclei
