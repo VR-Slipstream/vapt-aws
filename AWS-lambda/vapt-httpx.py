@@ -46,4 +46,4 @@ def lambda_handler(event, context):
     uploadByteStream = bytes(json.dumps(output['StandardOutputContent']).encode('UTF-8'))
     s3.put_object(Bucket=bucket, Key=filename, Body=uploadByteStream)
 
-    return {"statusCode": 200, "body": json.dumps(output["StandardOutputContent"])}
+    return {"statusCode": 200, "body": json.dumps(output["StandardOutputContent"]), "scantype": event["scantype"]}
