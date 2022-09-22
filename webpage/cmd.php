@@ -10,6 +10,16 @@ $cmd = 'curl -X POST -d \'{"input": "{\"subdomain\": \"'.$subdomain.'\", \"domai
 
 $output = shell_exec($cmd);
 
+
+if ($scantype == "lite" && $networkscan == "no") {
+	sleep(200);
+} elseif ($scantype == "intensive" && $networkscan == "no") {
+	sleep(400);
+} else {
+	sleep(300);
+}
+
+header('Location: http://127.0.0.1/vulns');
+
 echo "<pre>$output</pre>";
 ?>
-
