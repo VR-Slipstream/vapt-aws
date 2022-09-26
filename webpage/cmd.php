@@ -12,14 +12,14 @@ $output = shell_exec($cmd);
 
 
 if ($scantype == "lite" && $networkscan == "no") {
-	sleep(200);
+        sleep(150);                   
 } elseif ($scantype == "intensive" && $networkscan == "no") {
-	sleep(400);
+        sleep(300); 
 } else {
-	sleep(300);
+        sleep(210);
 }
-
-header('Location: http://127.0.0.1/vulns');
+                                             
+header('Location: http://52.90.86.38/vapt/output.html');
 
 echo "<pre>$output</pre>";
 ?>
