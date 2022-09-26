@@ -5,3 +5,4 @@ httpx/httprobe (Both Docker and cmd)
 nuclei
 aws-cli
 apache2
+php
